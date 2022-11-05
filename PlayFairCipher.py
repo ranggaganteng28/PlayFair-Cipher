@@ -1,26 +1,18 @@
-print ("==================================")
-print (" \nNAMA : Rangga Saputra ")
-print ("KELAS : TI.20.A2                  ")
-print ("NIM : 312010266		  ")
-print ("==================================")
-
-print ("Aplikasi Sederhana Enkripsi dan Dekripsi")
-print ("==============PlayFair Chipher==========")
-key=input(" Enter key : ")
+key=input("Masukkan Kata Kunci : ")
 key=key.replace(" ", "")
 key=key.upper()
 def matrix(x,y,initial):
     return [[initial for i in range(x)] for j in range(y)]
     
 result=list()
-for c in key: #storing key
+for c in key: 
     if c not in result:
         if c=='J':
             result.append('I')
         else:
             result.append(c)
 flag=0
-for i in range(65,91): #storing other character
+for i in range(65,91): 
     if chr(i) not in result:
         if i==73 and chr(74) not in result:
             result.append("I")
@@ -30,13 +22,13 @@ for i in range(65,91): #storing other character
         else:
             result.append(chr(i))
 k=0
-my_matrix=matrix(5,5,0) #initialize matrix
-for i in range(0,5): #making matrix
+my_matrix=matrix(5,5,0) 
+for i in range(0,5): 
     for j in range(0,5):
         my_matrix[i][j]=result[k]
         k+=1
 
-def locindex(c): #get location of each character
+def locindex(c):
     loc=list()
     if c=='J':
         c='I'
@@ -47,8 +39,8 @@ def locindex(c): #get location of each character
                 loc.append(k)
                 return loc
             
-def encrypt():  #Encryption
-    msg=str(input("ENTER PESAN : "))
+def encrypt():  
+    msg=str(input("Masukkan Pesan : "))
     msg=msg.upper()
     msg=msg.replace(" ", "")             
     i=0
@@ -58,7 +50,7 @@ def encrypt():  #Encryption
                 msg=msg[:s+1]+'X'+msg[s+1:]
     if len(msg)%2!=0:
         msg=msg[:]+'X'
-    print("CIPHER TEXT:",end=' ')
+    print("Hasil Decrypt : ",end=' ')
     while i<len(msg):
         loc=list()
         loc=locindex(msg[i])
@@ -72,14 +64,15 @@ def encrypt():  #Encryption
             print("{}{}".format(my_matrix[loc[0]][loc1[1]],my_matrix[loc1[0]][loc[1]]),end=' ')    
         i=i+2        
                  
-def decrypt():  #decryption
-    msg=str(input("ENTER CIPHER TEXT : "))
+def decrypt():  
+    msg=str(input("Masukkan Pesan : "))
     msg=msg.upper()
     msg=msg.replace(" ", "")
-    print("PLAIN TEXT : ",end=' ')
+    print("Hasil Encrypt : ",end=' ')
     i=0
     while i<len(msg):
         loc=list()
+        
         loc=locindex(msg[i])
         loc1=list()
         loc1=locindex(msg[i+1])
@@ -92,7 +85,10 @@ def decrypt():  #decryption
         i=i+2        
 
 while(1):
-    choice=int(input("\n 1.Encryption \n 2.Decryption \n 3.EXIT \n \t Pilih : "))
+    print("\n=======================")
+    print("   PROGRAM PLAY FAIR    ")
+    print("=======================")
+    choice=int(input("\n 1.Encryption \n 2.Decryption \n 3.Exit \n   \n Masukkan Perintah : "))
     if choice==1:
         encrypt()
     elif choice==2:
@@ -100,4 +96,4 @@ while(1):
     elif choice==3:
         exit()
     else:
-        print("Choose correct choice")
+        print("Tolong Pilih Perintah yang Benar")
